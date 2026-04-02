@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Battleship Game</string>
+    <string name="login">Login</string>
+    <string name="game_code">Gamecode</string>
+    <string name="user_name">Username</string>
+    <string name="submit">Join game</string>
+    <string name="place_ship">Place the ships</string>
 </resources>
