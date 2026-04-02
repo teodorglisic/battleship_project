@@ -3,6 +3,7 @@ package ch.glisic.battleshipgame.appviews
 import android.media.MediaPlayer
 import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -15,11 +16,14 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,7 +35,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -103,16 +109,31 @@ fun PlaceShipView(player: MediaPlayer) {
                 )
 
 
-                Button( modifier = Modifier.rotate(animatedAngle)
-                    ,onClick = {
-                        Log.i("PlaceShipsView", "Button $i pressed")
+//                Button( modifier = Modifier.rotate(animatedAngle)
+//                    ,onClick = {
+//                        Log.i("PlaceShipsView", "Button $i pressed")
+//                        if (rotation == 0f) {
+//                            rotation = 90f
+//                        } else {
+//                            rotation = 0f
+//                        }
+//                    },) {
+//                    Text(text = "Button $i")
+//                }
+
+                IconButton( onClick = {
+                    Log.i("PlaceShipsView", "Button $i pressed")
                         if (rotation == 0f) {
                             rotation = 90f
                         } else {
                             rotation = 0f
                         }
-                    }) {
-                    Text(text = "Button $i")
+                }, modifier = Modifier.rotate(animatedAngle).size(150.dp)) {
+                    Image(
+                        painter = painterResource(R.drawable.carrier),
+                        contentDescription = stringResource(R.string.carrier_content),
+                        contentScale = ContentScale.Fit
+                    )
                 }
             }
         }

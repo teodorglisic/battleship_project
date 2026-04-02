@@ -6,4 +6,5 @@
     <string name="user_name">Benutzername</string>
     <string name="submit">Spiel beitreten</string>
     <string name="place_ship">Schiffe positionieren</string>
+    <string name="carrier_content">Bild vom Trägerboot</string>
 </resources>
