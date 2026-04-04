@@ -28,9 +28,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import ch.glisic.battleshipgame.R
 import ch.glisic.battleshipgame.navigation.NavRoutes
+import ch.glisic.battleshipgame.webservice.ApiRequester
+import ch.glisic.battleshipgame.webservice.WebApiModelView
 
+
+val model = WebApiModelView()
 @Composable
 fun LoginView(modifier: Modifier, nav: NavHostController) {
+    model.getPingResult()
     var gameCode by remember { mutableStateOf("") }
     var userName by remember { mutableStateOf("")}
 
@@ -40,7 +45,7 @@ fun LoginView(modifier: Modifier, nav: NavHostController) {
     Box() {
 
         Image(
-            painter = painterResource(R.drawable.battleship),
+            painter = painterResource(R.drawable.background),
             contentDescription = "Picture of a battleship",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.fillMaxSize(),
@@ -57,7 +62,12 @@ fun LoginView(modifier: Modifier, nav: NavHostController) {
                 .padding(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(30.dp, Alignment.CenterVertically)) {
+
+
             Text(text = "${stringResource(R.string.app_name)} ${stringResource(R.string.login)}", fontWeight = FontWeight.Bold)
+
+            Text(text = "Ping result is: ${model.getPing}")
+
             OutlinedTextField(
                 value = gameCode,
                 onValueChange = { gameCode = it } ,

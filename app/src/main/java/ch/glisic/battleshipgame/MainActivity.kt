@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import ch.glisic.battleshipgame.navigation.Navigation
 import ch.glisic.battleshipgame.ui.theme.BattleshipGameTheme
 
+public const val BASE_URL = "http://brad-home.ch:50003/"
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
