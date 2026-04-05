@@ -24,7 +24,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ch.glisic.battleshipgame.R
+import ch.glisic.battleshipgame.apiModel
 import ch.glisic.battleshipgame.gameModel.StartGameModel
+import ch.glisic.battleshipgame.startGameModel
+import ch.glisic.battleshipgame.webservice.FireBody
 import ch.glisic.battleshipgame.webservice.ShipPosition
 
 @Composable
@@ -42,7 +45,7 @@ fun GameBoardView(startGameModel: StartGameModel) {
             fontSize = 24.sp
         )
 
-        EnemyGameBoard()
+        EnemyGameBoard(startGameModel)
         MyGameBoard(startGameModel)
 
     }
@@ -78,14 +81,13 @@ fun MyGameBoard(startGameModel: StartGameModel) {
             ) {
 
                 Text(text = "$row,$col", fontSize = 10.sp, color = Color.Black)
-                println(startGameModel.position)
             }
         }
     }
 }
 
 @Composable
-fun EnemyGameBoard() {
+fun EnemyGameBoard(startGameModel1: StartGameModel) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(10), // Forces exactly 10 columns
         modifier = Modifier
@@ -107,6 +109,7 @@ fun EnemyGameBoard() {
                     .background(Color.LightGray)
                     .clickable(enabled = true) {
                         println("$row,$col in EnemyGameBoard")
+                        apiModel.sendFire(FireBody(startGameModel.username, startGameModel.gamekey, col, row))
                     }
 
             ) {

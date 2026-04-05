@@ -14,6 +14,10 @@ interface GameWebApiService {
     @POST("/game/join")
     suspend fun joinGame(@Body data: StartGameContainer): PostResult
 
-    @POST("/game/join")
-    suspend fun joinGameString(@Body data: String) : String
+    @POST("/game/fire")
+    suspend fun fire(@Body data: FireBody): FireServerReply
+
+    @POST("/game/enemyFire")
+    suspend fun awaitEnemyFire(@Body data: EnemyFireBody): EnemyFireResponse
+
 }

@@ -13,14 +13,16 @@ import kotlinx.serialization.json.Json
 
 class WebApiModelView: ViewModel() {
 
+    var fireReply: FireServerReply? by mutableStateOf(null)
+        private set
     var getPing by mutableStateOf(false)
         private set
 
     var getPost: Boolean? by mutableStateOf(null)
         private set
 
-    var getPostString by mutableStateOf("")
-        private set
+
+    var getFireEnemyReply: EnemyFireResponse? by mutableStateOf(null)
 
     fun getPingResult() {
         viewModelScope.launch {
@@ -35,10 +37,19 @@ class WebApiModelView: ViewModel() {
         }
     }
 
-    fun sendPostString(body: String) {
+
+    fun sendFire(body: FireBody) {
         viewModelScope.launch {
-            getPostString = ApiRequester.retrofitService.joinGameString(body)
+            fireReply = ApiRequester.retrofitService.fire(body)
         }
     }
+
+    fun sendEnemyFire(body: EnemyFireBody) {
+        viewModelScope.launch {
+            getFireEnemyReply = ApiRequester.retrofitService.awaitEnemyFire(body)
+        }
+    }
+
+
 
 }

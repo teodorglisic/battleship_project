@@ -31,3 +31,31 @@ data class PostResult(
     val y: Int? = null,
     val Error: String? = null
 )
+
+@Serializable
+data class FireBody(
+    val player: String,
+    val gamekey: String,
+    val x: Int,
+    val y: Int
+)
+
+
+@Serializable
+data class FireServerReply(
+    val hit: Boolean,
+    val shipsSunk: List<String>
+)
+
+@Serializable
+data class EnemyFireBody(
+    val player: String,
+    val gamekey: String,
+)
+
+@Serializable
+data class EnemyFireResponse(
+    val x: Int,
+    val y: Int,
+    val gameOver: Boolean
+)
