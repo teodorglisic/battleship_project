@@ -16,3 +16,18 @@ data class ShipPosition (
     val y: Int,
     val ship: String
 )
+
+
+@Serializable
+data class PingResult (
+    val ping: Boolean
+)
+
+
+@Serializable
+data class PostResult(
+    val gameover: Boolean,
+    val x: Int? = null,
+    val y: Int? = null,
+    val Error: String? = null
+)

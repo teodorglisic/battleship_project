@@ -8,11 +8,11 @@ import retrofit2.http.POST
 interface GameWebApiService {
 
     @GET("ping")
-    suspend fun getPing(): ResponseBody
+    suspend fun getPing(): PingResult
 
 
     @POST("/game/join")
-    suspend fun joinGame(@Body data: StartGameContainer): ResponseBody
+    suspend fun joinGame(@Body data: StartGameContainer): PostResult
 
     @POST("/game/join")
     suspend fun joinGameString(@Body data: String) : String

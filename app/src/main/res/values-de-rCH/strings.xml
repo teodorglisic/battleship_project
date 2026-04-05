@@ -7,4 +7,7 @@
     <string name="place_ship">Schiffe positionieren</string>
     <string name="carrier_content">Bild vom Trägerboot</string>
     <string name="game_key">Spielschlüssel</string>
+    <string name="loading">Ladesicht</string>
+    <string name="loading_message">Auf anderen Spieler warten...</string>
+    <string name="gameboard">Spielbrett</string>
 </resources>

@@ -40,10 +40,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import ch.glisic.battleshipgame.R
 import ch.glisic.battleshipgame.apiModel
 import ch.glisic.battleshipgame.gameModel.Ships
 import ch.glisic.battleshipgame.gameModel.StartGameModel
+import ch.glisic.battleshipgame.navigation.NavRoutes
 import ch.glisic.battleshipgame.webservice.ApiRequester
 import ch.glisic.battleshipgame.webservice.ShipPosition
 import ch.glisic.battleshipgame.webservice.StartGameContainer
@@ -51,7 +53,7 @@ import ch.glisic.battleshipgame.webservice.StartGameContainer
 //Used Gemini for help with creating the Grid as Boxes, since I tried to use Buttons and it didn't work
 
 @Composable
-fun PlaceShipView(player: MediaPlayer, startGameModel: StartGameModel) {
+fun PlaceShipView(player: MediaPlayer, startGameModel: StartGameModel, nav: NavHostController) {
 
     var selectedShip: Ships? by remember {mutableStateOf(null)}
     val boatArray = remember { Array(10) { Array(10) { mutableStateOf(false) } } }
@@ -204,7 +206,7 @@ fun PlaceShipView(player: MediaPlayer, startGameModel: StartGameModel) {
 
         if (selectedShips.size == 5) {
 
-            if (apiModel.getPost.isEmpty()) {
+            if (apiModel.getPost == null) {
                 // The state is empty, so we show the Join button
                 Button(onClick = {
                     val body = StartGameContainer(
@@ -213,12 +215,10 @@ fun PlaceShipView(player: MediaPlayer, startGameModel: StartGameModel) {
                         startGameModel.position
                     )
                     apiModel.sendPost(body)
+                    nav.navigate(NavRoutes.LoadingView.name)
                 }) {
                     Text(text = "Join game")
                 }
-            } else {
-                // The state is populated, meaning the server responded!
-                Text("Game Started! Server reply: ${apiModel.getPost}")
             }
 //            Button(onClick = {
 //

@@ -16,7 +16,7 @@ import ch.glisic.battleshipgame.navigation.Navigation
 import ch.glisic.battleshipgame.ui.theme.BattleshipGameTheme
 import ch.glisic.battleshipgame.webservice.WebApiModelView
 
-public const val BASE_URL = "http://brad-home.ch:50003/"
+public const val BASE_URL = "http://10.0.2.2:50003/"
 public val startGameModel = StartGameModel()
 public val apiModel = WebApiModelView()
 class MainActivity : ComponentActivity() {

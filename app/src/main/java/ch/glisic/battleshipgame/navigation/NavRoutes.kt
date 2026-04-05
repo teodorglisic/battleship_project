@@ -5,5 +5,7 @@ import ch.glisic.battleshipgame.R
 
 enum class NavRoutes(val title: Int) {
     LoginView(R.string.login),
-    PlaceShipsView(R.string.place_ship)
+    PlaceShipsView(R.string.place_ship),
+    LoadingView(R.string.loading),
+    GameBoardView(R.string.gameboard)
 }

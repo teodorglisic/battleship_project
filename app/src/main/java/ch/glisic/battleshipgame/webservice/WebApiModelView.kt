@@ -13,10 +13,10 @@ import kotlinx.serialization.json.Json
 
 class WebApiModelView: ViewModel() {
 
-    var getPing by mutableStateOf("")
+    var getPing by mutableStateOf(false)
         private set
 
-    var getPost by mutableStateOf("")
+    var getPost: Boolean? by mutableStateOf(null)
         private set
 
     var getPostString by mutableStateOf("")
@@ -24,14 +24,14 @@ class WebApiModelView: ViewModel() {
 
     fun getPingResult() {
         viewModelScope.launch {
-            getPing = ApiRequester.retrofitService.getPing().string()
+            getPing = ApiRequester.retrofitService.getPing().ping
         }
     }
 
     fun sendPost(body: StartGameContainer) {
 
         viewModelScope.launch {
-            getPost = ApiRequester.retrofitService.joinGame(body).string()
+            getPost = ApiRequester.retrofitService.joinGame(body).gameover
         }
     }
 

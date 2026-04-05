@@ -6,4 +6,7 @@
     <string name="place_ship">Place the ships</string>
     <string name="carrier_content">Picture of the carrier boat</string>
     <string name="game_key">Game key</string>
+    <string name="loading">LoadingView</string>
+    <string name="loading_message">Waiting for other player...</string>
+    <string name="gameboard">Game board</string>
 </resources>

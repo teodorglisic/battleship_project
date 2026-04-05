@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import ch.glisic.battleshipgame.R
+import ch.glisic.battleshipgame.apiModel
 import ch.glisic.battleshipgame.gameModel.StartGameModel
 import ch.glisic.battleshipgame.navigation.NavRoutes
 import ch.glisic.battleshipgame.webservice.WebApiModelView
@@ -90,7 +91,9 @@ fun LoginView(modifier: Modifier, nav: NavHostController, startGameModel: StartG
                 startGameModel.gamekey = gameCode
                 startGameModel.username = userName
                 nav.navigate(NavRoutes.PlaceShipsView.name)
-            }, shape = RoundedCornerShape(20)) {
+            }, shape = RoundedCornerShape(20),
+                enabled = gameCode.length > 3 && userName.length > 3 && apiModel.getPing
+            ) {
                 Text(text = stringResource(R.string.submit))
             }
         }

@@ -7,6 +7,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import ch.glisic.battleshipgame.apiModel
+import ch.glisic.battleshipgame.appviews.GameBoardView
+import ch.glisic.battleshipgame.appviews.LoadingView
 import ch.glisic.battleshipgame.appviews.LoginView
 import ch.glisic.battleshipgame.appviews.PlaceShipView
 import ch.glisic.battleshipgame.gameModel.StartGameModel
@@ -28,7 +31,15 @@ fun Navigation(
         }
 
         composable(route = NavRoutes.PlaceShipsView.name) {
-            PlaceShipView(player, startGameModel)
+            PlaceShipView(player, startGameModel, nav = navController)
+        }
+
+        composable (route = NavRoutes.LoadingView.name) {
+            LoadingView(apiModel, nav = navController)
+        }
+
+        composable(route = NavRoutes.GameBoardView.name) {
+            GameBoardView(startGameModel)
         }
     }
 }
