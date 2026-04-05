@@ -27,19 +27,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import ch.glisic.battleshipgame.R
+import ch.glisic.battleshipgame.gameModel.StartGameModel
 import ch.glisic.battleshipgame.navigation.NavRoutes
-import ch.glisic.battleshipgame.webservice.ApiRequester
 import ch.glisic.battleshipgame.webservice.WebApiModelView
 
 
-val model = WebApiModelView()
+val apiModel = WebApiModelView()
 @Composable
-fun LoginView(modifier: Modifier, nav: NavHostController) {
-    model.getPingResult()
+fun LoginView(modifier: Modifier, nav: NavHostController, startGameModel: StartGameModel) {
+    apiModel.getPingResult()
     var gameCode by remember { mutableStateOf("") }
     var userName by remember { mutableStateOf("")}
 
-    val gameCodeLabel = stringResource(R.string.game_code)
+    val gameCodeLabel = stringResource(R.string.game_key)
     val userNameLabel = stringResource(R.string.user_name)
 
     Box() {
@@ -66,7 +66,7 @@ fun LoginView(modifier: Modifier, nav: NavHostController) {
 
             Text(text = "${stringResource(R.string.app_name)} ${stringResource(R.string.login)}", fontWeight = FontWeight.Bold)
 
-            Text(text = "Ping result is: ${model.getPing}")
+            Text(text = "Ping result is: ${apiModel.getPing}")
 
             OutlinedTextField(
                 value = gameCode,
@@ -87,6 +87,8 @@ fun LoginView(modifier: Modifier, nav: NavHostController) {
             Button(onClick = {
                 Log.i("LoginView", "$gameCodeLabel: $gameCode")
                 Log.i("LoginView", "$userNameLabel: $userName")
+                startGameModel.gamekey = gameCode
+                startGameModel.username = userName
                 nav.navigate(NavRoutes.PlaceShipsView.name)
             }, shape = RoundedCornerShape(20)) {
                 Text(text = stringResource(R.string.submit))

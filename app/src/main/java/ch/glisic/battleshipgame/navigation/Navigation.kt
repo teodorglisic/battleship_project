@@ -9,20 +9,26 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ch.glisic.battleshipgame.appviews.LoginView
 import ch.glisic.battleshipgame.appviews.PlaceShipView
+import ch.glisic.battleshipgame.gameModel.StartGameModel
 
 @Composable
-fun Navigation(navController: NavHostController, modifier: Modifier = Modifier, player: MediaPlayer) {
+fun Navigation(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    player: MediaPlayer,
+    startGameModel: StartGameModel
+) {
     NavHost(
         navController = navController,
         startDestination = NavRoutes.LoginView.name,
         modifier = modifier
     ) {
         composable(route = NavRoutes.LoginView.name) {
-            LoginView(modifier = modifier, nav = navController)
+            LoginView(modifier = modifier, nav = navController, startGameModel)
         }
 
         composable(route = NavRoutes.PlaceShipsView.name) {
-            PlaceShipView(player)
+            PlaceShipView(player, startGameModel)
         }
     }
 }
